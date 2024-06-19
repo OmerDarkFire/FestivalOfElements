@@ -1,3 +1,9 @@
+#home h2 img {
+    vertical-align: middle; /* Align the image vertically with text */
+    margin-left: 10px; /* Adjust margin to create space between text and image */
+    /* Add other styles as needed */
+}
+
 body {
     font-family: Arial, sans-serif;
     direction: rtl;
