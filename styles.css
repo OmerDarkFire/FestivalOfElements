@@ -1,11 +1,13 @@
+/* Import Rubik font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+
 #home h2 img {
-    vertical-align: middle; /* Align the image vertically with text */
-    margin-left: 10px; /* Adjust margin to create space between text and image */
-    /* Add other styles as needed */
+    vertical-align: middle;
+    margin-left: 10px;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Rubik', Arial, sans-serif; /* Changed to Rubik */
     direction: rtl;
     text-align: right;
     margin: 0;
