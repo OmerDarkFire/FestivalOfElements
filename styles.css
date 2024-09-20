@@ -187,9 +187,9 @@ footer p {
 }
 
 .tournament-box {
-    width: 200px; /* Fixed width */
-    padding: 15px;
-    margin: 10px;
+    width: 300px; /* Increased width */
+    padding: 20px; /* Increased padding */
+    margin: 15px; /* Adjusted margin for spacing */
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
