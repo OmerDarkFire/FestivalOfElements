@@ -49,7 +49,7 @@ nav ul li a:hover {
 
 main {
     padding: 2em;
-    max-width: 800px;
+    max-width: 1200px; /* Adjust max-width */
     margin: 0 auto;
 }
 
@@ -62,127 +62,51 @@ section h2 {
     margin-bottom: 0.5em;
 }
 
-/* Zoo Section Styles */
-.zoo {
+.zoo-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px; /* Space between animal boxes */
+    justify-content: space-around; /* Ensures animals are in a line */
+    gap: 20px;
+    padding: 20px;
 }
 
 .animal-box {
     position: relative;
-    width: 200px; /* Fixed width */
-    height: 200px; /* Fixed height */
-    overflow: hidden; /* Hide overflow */
-    border: 2px solid #333; /* Optional border for the boxes */
+    width: 200px; /* Box width */
+    height: 200px; /* Box height */
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
     border-radius: 10px;
-}
-
-.animal {
-    width: 100%; /* Make animal image fill the box */
-    height: 100%;
-    object-fit: cover; /* Maintain aspect ratio */
-    animation: walk 5s linear infinite; /* Add walking animation */
+    overflow: hidden;
+    text-align: center;
 }
 
 .barrier {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%; /* Make barrier fill the box */
-    height: 100%; /* Make barrier fill the box */
-    object-fit: cover; /* Maintain aspect ratio */
-    z-index: 1; /* Place barrier above animal */
+    bottom: 0;
+    width: 100%; /* Full width of the box */
+    height: 50px; /* Barrier height */
+    background-image: url('zoo/barrier.png');
+    background-size: cover; /* Make sure the barrier covers full width */
+    background-repeat: no-repeat;
+    background-position: bottom; /* Position barrier at the bottom */
+    z-index: 2; /* Barrier is in front of the animal */
 }
 
-/* Animation for the animals */
-@keyframes walk {
-    0% { transform: translateX(0); }
-    50% { transform: translateX(-10px); } /* Move slightly left */
-    100% { transform: translateX(0); }
+.animal {
+    position: absolute;
+    bottom: 0; /* Align the animal to touch the bottom of the box */
+    width: 100px; /* Adjust to control animal size */
+    height: auto; /* Maintain animal aspect ratio */
+    object-fit: contain;
+    z-index: 1; /* Ensure animal is behind the barrier */
+    animation: moveAnimal 5s linear infinite;
 }
 
-/* Team Section Styles */
-.team-category {
-    margin-bottom: 2em;
-}
-
-.team-category h3 {
-    font-size: 1.2em;
-    margin-bottom: 1em;
-    text-align: center;
-    color: #26d9fc;
-}
-
-.team-grid {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.team-box {
-    display: flex;
-    align-items: center;
-    width: 200px;
-    padding: 10px;
-    margin: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: left;
-}
-
-.team-box img {
-    width: 65px;
-    height: 65px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-left: 20px;
-}
-
-.team-box p {
-    margin: 0;
-    font-size: 1em;
-    color: #333;
-}
-
-/* Socials Section Styles */
-.socials-grid {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Space between boxes */
-    margin-top: 20px;
-}
-
-.socials-box {
-    width: 150px; /* Fixed width */
-    height: 150px; /* Fixed height */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    text-align: center;
-    overflow: hidden;
-    background-color: #fff;
-}
-
-.socials-box a {
-    text-decoration: none; /* Remove underline */
-    color: #333; /* Text color */
-}
-
-.socials-box img {
-    width: 80px; /* Adjust as needed */
-    height: 80px; /* Adjust as needed */
-    object-fit: cover; /* Ensures the image fits nicely */
-    margin-bottom: 10px;
-}
-
-.socials-box p {
-    margin: 0;
+/* Animation to make the animals move left to right */
+@keyframes moveAnimal {
+    0% { left: -100px; } /* Start off the left */
+    100% { left: 200px; } /* Move to the right (outside the box) */
 }
 
 /* Footer Styles */
@@ -201,25 +125,6 @@ footer p {
     margin: 0;
 }
 
-/* Tournament Section Styles */
-.tournament-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-
-.tournament-box {
-    width: 300px; /* Increased width */
-    padding: 20px; /* Increased padding */
-    margin: 15px; /* Adjusted margin for spacing */
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: right; /* Align text to the right */
-}
-
 /* Media Queries */
 @media (max-width: 600px) {
     nav ul {
@@ -235,7 +140,7 @@ footer p {
         padding: 1em;
     }
 
-    .team-grid {
+    .zoo {
         flex-direction: column;
         align-items: center;
     }
