@@ -127,6 +127,11 @@ section h2 {
     background-color: #fff;
 }
 
+.socials-box a {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Text color */
+}
+
 .socials-box img {
     width: 80px; /* Adjust as needed */
     height: 80px; /* Adjust as needed */
