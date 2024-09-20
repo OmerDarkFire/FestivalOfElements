@@ -93,14 +93,18 @@ section h2 {
     z-index: 2; /* Barrier is in front of the animal */
 }
 
+.barrier.second {
+    bottom: 50px; /* Position the second barrier above the first */
+}
+
 .animal {
     position: absolute;
-    bottom: 0; /* Align the animal to touch the bottom of the box */
+    bottom: 10px; /* Adjust this to raise the animal */
     width: 100px; /* Adjust to control animal size */
     height: auto; /* Maintain animal aspect ratio */
     object-fit: contain;
     z-index: 1; /* Ensure animal is behind the barrier */
-    animation: moveAnimal 5s linear infinite;
+    animation: moveAnimal 5s linear infinite; /* Default animation timing */
 }
 
 /* Animation to make the animals move left to right */
