@@ -228,27 +228,97 @@ pokemon_names = [
     "Walking Wake", "Iron Leaves"
 ]
 
+import os
 
+# Create a directory for the Pokémon tabs
+os.makedirs("pokemon_tabs", exist_ok=True)
 
-# Template for each Pokémon entry
-template = '''<div class="pokemon-entry">
-    <img src="images/{name_upper}.png" alt="{name}">
-    <p>#{number:03d} {name_hebrew}</p>
-</div>'''
+# Create the main index file
+with open("index.html", "w", encoding="utf-8") as index_file:
+    index_file.write('''<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>פסטיבל האלמנטים</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+</head>
+<body>
+    <header>
+        <h1>פסטיבל האלמנטים</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">דף הבית</a></li>
+                <li><a href="games.html">גן חיות</a></li>
+                <li><a href="socials.html">קישורים</a></li>
+                <li><a href="challenges.html">אתגרים קודמים</a></li>
+                <li><a href="team.html">צוות השרת</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+''')
 
-# Generate HTML for each Pokémon
-html_output = '<div class="container">'  # Add this line
-for number, name in enumerate(pokemon_names, start=1):
-    name_hebrew = name  # Replace with actual Hebrew translation if available
-    html_output += template.format(
-        name_upper=name.upper(),
-        name=name,
-        number=number,
-        name_hebrew=name_hebrew
-    )
-html_output += '</div>'  # Add this line
+    # Generate a tab for each Pokémon
+    for name in pokemon_names:
+        name_upper = name.upper()
+        formatted_name = name.replace(" ", "")  # Remove spaces for filenames
+        index_file.write(f'        <div class="pokemon-entry">\n')
+        index_file.write(f'            <a href="pokemon_tabs/{formatted_name}.html">{name}</a>\n')
+        index_file.write(f'            <img src="images/normal/{name_upper}.png" alt="{name}">\n')
+        index_file.write(f'        </div>\n')
 
+    index_file.write('''    </main>
+    <footer>
+    </footer>
+</body>
+</html>
+''')
 
-# Write the generated HTML to a file
-with open("pokemon_list.html", "w", encoding="utf-8") as f:
-    f.write(html_output)
+# Create individual HTML files for each Pokémon in the new folder
+for name in pokemon_names:
+    name_upper = name.upper()
+    formatted_name = name.replace(" ", "")
+    
+    with open(f"pokemon_tabs/{formatted_name}.html", "w", encoding="utf-8") as pokemon_file:
+        pokemon_file.write(f'''<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{name} - פסטיבל האלמנטים</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+</head>
+<body>
+    <header>
+        <h1>פסטיבל האלמנטים</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">דף הבית</a></li>
+                <li><a href="games.html">גן חיות</a></li>
+                <li><a href="socials.html">קישורים</a></li>
+                <li><a href="challenges.html">אתגרים קודמים</a></li>
+                <li><a href="team.html">צוות השרת</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>{name}</h2>
+        <div>
+            <img src="images/normal/{name_upper}.png" alt="{name}">
+            <img src="images/shiny/{name_upper}.png" alt="{name} Shiny">
+        </div>
+        <div>
+            <img src="back_images/normal/{name_upper}.png" alt="{name} Back">
+            <img src="back_images/shiny/{name_upper}.png" alt="{name} Shiny Back">
+        </div>
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>
+''')

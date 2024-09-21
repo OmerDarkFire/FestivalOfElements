@@ -197,37 +197,42 @@ footer p {
     text-align: right; /* Align text to the right */
 }
 
-.pokemon-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+body {
+    font-family: 'Rubik', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
 }
 
-.pokemon-entry {
+h1 {
     text-align: center;
-    width: 120px;
+    color: white;
 }
 
-.pokemon-entry img {
-    width: 100px;
-    height: 100px;
+body {
+    font-family: 'Rubik', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
 }
 
 .pokemon-entry {
     background-color: white;
-    border: 2px solid #4caf50;
+    border: 2px solid #26d9fc;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    margin: 10px;
-    display: inline-block;
     text-align: center;
-    width: 150px; /* Set a fixed width for uniformity */
-    transition: transform 0.2s;
+    transition: box-shadow 0.2s, border 0.2s; /* Transition for smooth effect */
 }
 
 .pokemon-entry img {
-    width: 100px; /* Set image size */
+    width: 100px;
     height: 100px;
     margin-bottom: 10px;
 }
@@ -238,12 +243,16 @@ footer p {
 }
 
 .pokemon-entry:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+    border-color: #26d9fc; /* Darker green on hover */
 }
+
 .container {
-    display: flex;
-    flex-wrap: wrap; /* This allows the items to wrap onto new lines */
-    justify-content: center; /* Center the entries horizontally */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns of equal width */
+    gap: 15px; /* Spacing between items */
+    justify-items: center; /* Center items within their grid cells */
+    padding: 20px; /* Padding around the grid */
 }
 body {
     overflow-y: scroll; /* Always show vertical scrollbar */
