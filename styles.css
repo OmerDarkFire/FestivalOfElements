@@ -61,52 +61,6 @@ section h2 {
     font-size: 1.5em;
     margin-bottom: 0.5em;
 }
-
-.zoo-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around; /* Ensures animals are in a line */
-    gap: 20px;
-    padding: 20px;
-}
-
-.animal-box {
-    position: relative;
-    width: 200px; /* Box width */
-    height: 200px; /* Box height */
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-    text-align: center;
-}
-
-.barrier {
-    position: absolute;
-    bottom: 0;
-    width: 100%; /* Full width of the box */
-    height: 50px; /* Barrier height */
-    background-image: url('zoo/barrier.png');
-    background-size: cover; /* Make sure the barrier covers full width */
-    background-repeat: no-repeat;
-    background-position: bottom; /* Position barrier at the bottom */
-    z-index: 2; /* Barrier is in front of the animal */
-}
-
-.barrier.second {
-    bottom: 50px; /* Position the second barrier above the first */
-}
-
-.animal {
-    position: absolute;
-    bottom: 10px; /* Adjust this to raise the animal */
-    width: 100px; /* Adjust to control animal size */
-    height: auto; /* Maintain animal aspect ratio */
-    object-fit: contain;
-    z-index: 1; /* Ensure animal is behind the barrier */
-    animation: moveAnimal 5s linear infinite; /* Default animation timing */
-}
-
 /* Animation to make the animals move left to right */
 @keyframes moveAnimal {
     0% { left: -100px; } /* Start off the left */
