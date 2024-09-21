@@ -221,6 +221,14 @@ h1 {
     color: white;
 }
 
+.container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    justify-items: center;
+    padding: 20px;
+}
+
 .pokemon-entry {
     background-color: white;
     border: 2px solid #26d9fc;
@@ -228,31 +236,40 @@ h1 {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 15px;
     text-align: center;
-    transition: box-shadow 0.2s, border 0.2s; /* Transition for smooth effect */
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.pokemon-entry img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
+.normal-sprite {
+    display: block; /* Show normal sprite */
+    width: 100px; /* Set width for consistent size */
+    height: 100px; /* Set height for consistent size */
 }
 
-.pokemon-entry p {
-    font-size: 16px;
-    color: #333;
+.shiny-sprite {
+    display: none; /* Hide shiny sprite initially */
+    width: 100px; /* Set width for consistent size */
+    height: 100px; /* Set height for consistent size */
 }
 
 .pokemon-entry:hover {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
-    border-color: #26d9fc; /* Darker green on hover */
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-.container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 columns of equal width */
-    gap: 15px; /* Spacing between items */
-    justify-items: center; /* Center items within their grid cells */
-    padding: 20px; /* Padding around the grid */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+}
+
+footer p {
+    margin: 0;
 }
 body {
     overflow-y: scroll; /* Always show vertical scrollbar */
