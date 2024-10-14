@@ -274,3 +274,11 @@ footer p {
 body {
     overflow-y: scroll; /* Always show vertical scrollbar */
 }
+/* Logo Styling */
+.logo {
+    width: 100px; /* Fixed size */
+    height: 100px; /* Fixed size */
+    object-fit: cover; /* Prevents image distortion */
+    border-radius: 50%; /* Makes the logo circular */
+    margin-bottom: 10px;
+}
