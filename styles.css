@@ -1,12 +1,19 @@
 /* Import Rubik font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
 
+html, body {
+    height: 100%; /* Ensure body takes full height */
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Rubik', Arial, sans-serif;
     direction: rtl;
     text-align: right;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push footer to the bottom */
     background-color: #f4f4f9;
     color: #333;
 }
@@ -50,6 +57,7 @@ main {
     padding: 2em;
     max-width: 800px;
     margin: 0 auto;
+    flex: 1; /* Make sure the main content takes up available space */
 }
 
 section {
@@ -149,8 +157,6 @@ footer {
     color: white;
     text-align: center;
     padding: 1em;
-    position: fixed;
-    bottom: 0;
     width: 100%;
     box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
 }
@@ -179,6 +185,7 @@ footer p {
         align-items: center;
     }
 }
+
 .tournament-grid {
     display: flex;
     flex-wrap: wrap;
@@ -262,8 +269,6 @@ footer {
     color: white;
     text-align: center;
     padding: 1em;
-    position: fixed;
-    bottom: 0;
     width: 100%;
     box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
 }
@@ -271,9 +276,11 @@ footer {
 footer p {
     margin: 0;
 }
+
 body {
     overflow-y: scroll; /* Always show vertical scrollbar */
 }
+
 /* Logo Styling */
 .logo {
     width: 100px; /* Fixed size */
