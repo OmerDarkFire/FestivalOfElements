@@ -16,6 +16,11 @@
 
             // Handle clicks on the black box
             blackBox.addEventListener('click', () => {
+                // Play the sound
+                const audio = new Audio('BLUE_LOBSTER.mp3');
+                audio.play();
+
+                // Show the image in full screen
                 const photoURL = 'yali-grey-black-background.png'; // Path to the photo
                 const imgElement = document.createElement('img');
                 imgElement.src = photoURL;
