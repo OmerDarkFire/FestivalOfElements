@@ -7,6 +7,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let inputSequence = '';
+            const targetSequence = '123'; // Key sequence: 1, 2, 3
+            const redirectURL = 'https://youtu.be/dIEuBLkYqYA?si=rDb7eYbIzbYANajE'; // Redirect URL
+
+            document.addEventListener('keydown', (event) => {
+                inputSequence += event.key;
+
+                if (inputSequence.includes(targetSequence)) {
+                    window.location.href = redirectURL;
+                }
+
+                if (inputSequence.length > targetSequence.length) {
+                    inputSequence = inputSequence.slice(-targetSequence.length);
+                }
+            });
+        });
+    </script>
 </head>
 <body>
     <header>
