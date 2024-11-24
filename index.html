@@ -10,12 +10,16 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const blackBox = document.getElementById('hidden-box');
-            
+            let inputSequence = '';
+            const targetSequence = '123'; // Key sequence: 1, 2, 3
+            const redirectURL = 'https://youtu.be/dIEuBLkYqYA?si=rDb7eYbIzbYANajE'; // Redirect URL
+
+            // Handle clicks on the black box
             blackBox.addEventListener('click', () => {
-                const photoURL = 'yali grey black background.png'; // Path to the photo
+                const photoURL = 'yali-grey-black-background.png'; // Path to the photo
                 const imgElement = document.createElement('img');
                 imgElement.src = photoURL;
-                imgElement.alt = 'Photo';
+                imgElement.alt = 'Full screen photo of Yali\'s grey background';
                 imgElement.style.position = 'fixed';
                 imgElement.style.top = '0';
                 imgElement.style.left = '0';
@@ -31,6 +35,42 @@
                 });
 
                 document.body.appendChild(imgElement);
+            });
+
+            // Handle the key sequence for redirecting
+            document.addEventListener('keydown', (event) => {
+                inputSequence += event.key;
+
+                if (inputSequence.includes(targetSequence)) {
+                    window.location.href = redirectURL;
+                }
+
+                if (inputSequence.length > targetSequence.length) {
+                    inputSequence = inputSequence.slice(-targetSequence.length);
+                }
+
+                // Open photo in full screen on 'י' key press
+                if (event.key === 'י') {
+                    const photoURL = 'yali-grey-black-background.png'; // Path to the photo
+                    const imgElement = document.createElement('img');
+                    imgElement.src = photoURL;
+                    imgElement.alt = 'Full screen photo of Yali\'s grey background';
+                    imgElement.style.position = 'fixed';
+                    imgElement.style.top = '0';
+                    imgElement.style.left = '0';
+                    imgElement.style.width = '100vw';
+                    imgElement.style.height = '100vh';
+                    imgElement.style.objectFit = 'contain';
+                    imgElement.style.background = 'rgba(0, 0, 0, 0.8)';
+                    imgElement.style.zIndex = '1000';
+
+                    // Add close functionality
+                    imgElement.addEventListener('click', () => {
+                        document.body.removeChild(imgElement);
+                    });
+
+                    document.body.appendChild(imgElement);
+                }
             });
         });
     </script>
@@ -52,50 +92,6 @@
         }
     </style>
 </head>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        let inputSequence = '';
-        const targetSequence = '123'; // Key sequence: 1, 2, 3
-        const redirectURL = 'https://youtu.be/dIEuBLkYqYA?si=rDb7eYbIzbYANajE'; // Redirect URL
-
-        document.addEventListener('keydown', (event) => {
-            inputSequence += event.key;
-
-            // Check for the '123' key sequence
-            if (inputSequence.includes(targetSequence)) {
-                window.location.href = redirectURL;
-            }
-
-            // Limit inputSequence length
-            if (inputSequence.length > targetSequence.length) {
-                inputSequence = inputSequence.slice(-targetSequence.length);
-            }
-
-            // Open photo in full screen on 'י' key press
-            if (event.key === 'י') {
-                const photoURL = 'yaligreyblackbackground.png'; // Path to the photo
-                const imgElement = document.createElement('img');
-                imgElement.src = photoURL;
-                imgElement.alt = 'Photo';
-                imgElement.style.position = 'fixed';
-                imgElement.style.top = '0';
-                imgElement.style.left = '0';
-                imgElement.style.width = '100vw';
-                imgElement.style.height = '100vh';
-                imgElement.style.objectFit = 'contain';
-                imgElement.style.background = 'rgba(0, 0, 0, 0.8)';
-                imgElement.style.zIndex = '1000';
-
-                // Add close functionality
-                imgElement.addEventListener('click', () => {
-                    document.body.removeChild(imgElement);
-                });
-
-                document.body.appendChild(imgElement);
-            }
-        });
-    });
-</script>
 <body>
     <header>
         <div class="logo-container">
@@ -116,7 +112,9 @@
         <h2>ברוכים הבאים לדף הבית!</h2>
         <p>כאן תמצאו את כל המידע על פסטיבל האלמנטים.</p>
     </main>
-    <footer></footer>
+    <footer>
+        <!-- Footer content goes here -->
+    </footer>
 
     <!-- The nearly invisible black box -->
     <div id="hidden-box"></div>
