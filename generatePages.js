@@ -1,10 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
+console.log('Script started...');
+
 // Create pokemon directory if it doesn't exist
 const dir = './pokemon';
 if (!fs.existsSync(dir)){
     fs.mkdirSync(dir);
+    console.log('Created pokemon directory');
 }
 
 // Function to convert type to Hebrew
@@ -32,28 +35,7 @@ function typeToHebrew(type) {
     return typeMap[type] || type;
 }
 
-// Function to safely evaluate TypeScript values
-function safeEval(value) {
-    try {
-        // Replace TypeScript-specific syntax with valid JavaScript
-        const jsValue = value
-            .replace(/(\w+):/g, '"$1":')  // Add quotes to object keys
-            .replace(/'/g, '"')           // Replace single quotes with double quotes
-            .replace(/,\s*}/g, '}')       // Remove trailing commas
-            .replace(/,\s*]/g, ']');      // Remove trailing commas in arrays
-
-        return Function('"use strict";return (' + jsValue + ')')();
-    } catch (error) {
-        console.error('Error parsing value:', value);
-        return null;
-    }
-}
-
-// Read and parse the pokedex.ts file
-const pokedexContent = fs.readFileSync('./src/data/pokedex.ts', 'utf8');
-
-// Parse the TypeScript file
-const Pokedex= {
+const Pokedex = {
 	bulbasaur: {
 		num: 1,
 		name: "Bulbasaur",
@@ -18503,71 +18485,60 @@ const Pokedex= {
 		color: "Purple",
 		tags: ["Mythical"],
 		eggGroups: ["Undiscovered"],
-	},
+	}
 };
-// ... (previous code remains the same until generateHTML function)
 
-function formatImageName(pokemonName, isShiny) {
-    // Handle special cases
-    let imageName = pokemonName.toLowerCase();
-    
-    // Handle gender forms
-    if (imageName.includes('♂')) {
-        imageName = imageName.replace('♂', '-m');
-    } else if (imageName.includes('♀')) {
-        imageName = imageName.replace('♀', '-f');
+// Group Pokémon by base species
+const groupedPokemon = {};
+Object.entries(Pokedex).forEach(([key, pokemon]) => {
+    const baseSpecies = pokemon.baseSpecies || pokemon.name;
+    if (!groupedPokemon[baseSpecies]) {
+        groupedPokemon[baseSpecies] = [];
     }
-    
-    // Handle mega evolutions
-    if (imageName.includes('mega')) {
-        imageName = imageName.replace(' mega ', '-mega-');
+    groupedPokemon[baseSpecies].push(pokemon);
+});
+
+// Generate files
+Object.entries(groupedPokemon).forEach(([baseSpecies, forms]) => {
+    try {
+        const fileName = path.join(dir, `${baseSpecies.toLowerCase()}.html`);
+        const html = generateHTML(baseSpecies, forms);
+        fs.writeFileSync(fileName, html);
+        console.log(`Generated ${fileName}`);
+    } catch (error) {
+        console.error(`Error generating HTML for ${baseSpecies}:`, error);
     }
-    
-    // Handle regional forms
-    const regions = ['alolan', 'galarian', 'hisuian'];
-    regions.forEach(region => {
-        if (imageName.includes(region)) {
-            imageName = imageName.replace(region + ' ', region + '-');
-        }
-    });
-    
-    // Handle other forms
-    imageName = imageName
-        .replace(' form', '')
-        .replace(' size', '')
-        .replace(' style', '')
-        .replace(' mode', '')
-        .replace(' cloak', '')
-        .replace(' ', '-');
-    
-    // Add shiny suffix
-    if (isShiny) {
-        imageName += '2';
-    }
-    
-    return imageName + '.jpg';
-}
+});
 
 function generateHTML(baseSpecies, forms) {
     const formSections = forms.map(form => {
         const abilities = Object.entries(form.abilities).map(([key, ability]) => {
             const type = key === 'H' ? 'נסתרת' : 'רגילה';
-            return `<div class="ability"><span class="ability-name">${ability}</span> <span class="ability-type ${key === 'H' ? 'hidden' : ''}">${type}</span></div>`;
-        }).join(' ');
+            return `<div class="ability">
+                <span class="ability-name">${ability}</span> 
+                <span class="ability-type ${key === 'H' ? 'hidden' : ''}">${type}</span>
+            </div>`;
+        }).join('\n');
 
-        const types = form.types.map(type => `<span class="type ${type.toLowerCase()}">${typeToHebrew(type)}</span>`).join(' ');
+        const types = form.types.map(type => 
+            `<span class="type ${type.toLowerCase()}">${typeToHebrew(type)}</span>`
+        ).join(' ');
 
-        const normalSprite = formatImageName(form.name, false);
-        const shinySprite = formatImageName(form.name, true);
+        const normalSprite = form.name.toLowerCase().replace(' ', '-') + '.jpg';
+        const shinySprite = form.name.toLowerCase().replace(' ', '-') + '2.jpg';
 
         return `
         <div class="form-section">
             <div class="pokemon-info">
                 <h3>${form.name}</h3>
-                <div class="type-badges">${types}</div>
+                <div class="type-badges">
+                    ${types}
+                </div>
                 <div class="abilities-section">
                     <h4>יכולות</h4>
-                    <div class="abilities-list">${abilities}</div>
+                    <div class="abilities-list">
+                        ${abilities}
+                    </div>
                 </div>
                 <div class="stats-section">
                     <h4>נתונים</h4>
@@ -18578,7 +18549,7 @@ function generateHTML(baseSpecies, forms) {
                                 <span class="stat-value">${value}</span>
                                 <div class="stat-bar" style="width: ${(value / 255) * 100}%"></div>
                             </div>
-                        `).join('')}
+                        `).join('\n')}
                     </div>
                 </div>
             </div>
@@ -18593,7 +18564,42 @@ function generateHTML(baseSpecies, forms) {
                 </div>
             </div>
         </div>`;
-    }).join('');
+    }).join('\n');
 
-    // ... (rest of the HTML template remains the same)
+    return `<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${baseSpecies} - פוקידקס</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="../banner.png" alt="לוגו האתר" class="logo">
+            <h1>פסטיבל האלמנטים</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">דף הבית</a></li>
+                <li><a href="../games.html">פוקידקס</a></li>
+                <li><a href="../socials.html">קישורים</a></li>
+                <li><a href="../challenges.html">אתגרים קודמים</a></li>
+                <li><a href="../team.html">צוות השרת</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>${baseSpecies}</h2>
+        ${formSections}
+    </main>
+
+    <!-- The nearly invisible black box -->
+    <div id="hidden-box"></div>
+</body>
+</html>`;
 }
