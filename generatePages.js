@@ -17,13 +17,13 @@ function typeToHebrew(type) {
         "Fire": "אש",
         "Water": "מים",
         "Electric": "חשמל",
-        "Grass": "דשא",
+        "Grass": "עשב",
         "Ice": "קרח",
         "Fighting": "לחימה",
         "Poison": "רעל",
         "Ground": "אדמה",
         "Flying": "מעופף",
-        "Psychic": "פסיכי",
+        "Psychic": "על חושי",
         "Bug": "חרק",
         "Rock": "סלע",
         "Ghost": "רוח",
@@ -18512,26 +18512,45 @@ Object.entries(groupedPokemon).forEach(([baseSpecies, forms]) => {
 
 function generateHTML(baseSpecies, forms) {
     const formSections = forms.map(form => {
-        // ... abilities and types code remains the same ...
+        const abilities = Object.entries(form.abilities).map(([key, ability]) => {
+            const type = key === 'H' ? 'נסתרת' : 'רגילה';
+            return `<div class="ability">
+                <span class="ability-name">${ability}</span> 
+                <span class="ability-type ${key === 'H' ? 'hidden' : ''}">${type}</span>
+            </div>`;
+        }).join('\n');
 
-        // Updated image name formatting
+        const types = form.types.map(type => 
+            `<span class="type ${type.toLowerCase()}">${typeToHebrew(type)}</span>`
+        ).join(' ');
+
+        // Format image name
         let imageName = form.name.toLowerCase()
-            .replace(/['']/g, '')        // Remove special quotes
-            .replace(/\s+/g, '-')        // Replace spaces with hyphens
-            .replace('♂', '-m')          // Handle male symbol
-            .replace('♀', '-f');         // Handle female symbol
+            .replace(/['']/g, '')
+            .replace(/\s+/g, '-')
+            .replace('♂', '-m')
+            .replace('♀', '-f')
+            .replace('alolan ', '')
+            .replace('galarian ', '')
+            .replace('hisuian ', '')
+            .replace('mega ', '')
+            .replace(' form', '')
+            .replace(' size', '')
+            .replace(' style', '')
+            .replace(' mode', '')
+            .replace(' cloak', '');
 
-        // Handle special form names
-        if (form.baseSpecies && form.baseSpecies !== form.name) {
-            const baseName = form.baseSpecies.toLowerCase();
-            const formName = form.name
-                .toLowerCase()
-                .replace(form.baseSpecies.toLowerCase(), '')
-                .trim()
-                .replace(/^-+|-+$/g, '')  // Remove leading/trailing hyphens
-                .replace(/\s+/g, '-');    // Replace spaces with hyphens
-            
-            imageName = `${baseName}-${formName}`;
+        // Add form suffix
+        if (form.name.toLowerCase().includes('alolan')) {
+            imageName = `${baseSpecies.toLowerCase()}-alolan`;
+        } else if (form.name.toLowerCase().includes('galarian')) {
+            imageName = `${baseSpecies.toLowerCase()}-galarian`;
+        } else if (form.name.toLowerCase().includes('hisuian')) {
+            imageName = `${baseSpecies.toLowerCase()}-hisuian`;
+        } else if (form.name.toLowerCase().includes('mega')) {
+            imageName = `${baseSpecies.toLowerCase()}-mega`;
+        } else if (form.name.toLowerCase().includes('gmax')) {
+            imageName = `${baseSpecies.toLowerCase()}-gmax`;
         }
 
         const normalSprite = `${imageName}.jpg`;
@@ -18541,7 +18560,27 @@ function generateHTML(baseSpecies, forms) {
         <div class="form-section">
             <div class="pokemon-info">
                 <h3>${form.name}</h3>
-                // ... rest of the HTML remains the same ...
+                <div class="type-badges">
+                    ${types}
+                </div>
+                <div class="abilities-section">
+                    <h4>יכולות</h4>
+                    <div class="abilities-list">
+                        ${abilities}
+                    </div>
+                </div>
+                <div class="stats-section">
+                    <h4>נתונים</h4>
+                    <div class="stats-grid">
+                        ${Object.entries(form.baseStats).map(([stat, value]) => `
+                            <div class="stat-item">
+                                <span class="stat-label">${stat.toUpperCase()}</span>
+                                <span class="stat-value">${value}</span>
+                                <div class="stat-bar" style="width: ${(value / 255) * 100}%"></div>
+                            </div>
+                        `).join('\n')}
+                    </div>
+                </div>
             </div>
             <div class="sprite-container">
                 <div class="sprite-wrapper">
@@ -18555,7 +18594,7 @@ function generateHTML(baseSpecies, forms) {
             </div>
         </div>`;
     }).join('\n');
-
+    
     return `<!DOCTYPE html>
 <html lang="he">
 <head>
