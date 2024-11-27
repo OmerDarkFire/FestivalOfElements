@@ -1,12 +1,13 @@
-/* Import Rubik font from Google Fonts */
+/* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
 
+/* Reset and Base Styles */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden;
 }
 
 body {
@@ -15,21 +16,42 @@ body {
     text-align: right;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Push footer to the bottom */
+    justify-content: space-between;
     background-color: #f4f4f9;
     color: #333;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: scroll;
 }
 
+/* Header and Navigation */
 header {
     background-color: #26d9fc;
     color: white;
     padding: 1em 0;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    width: 100%; /* Ensure the header takes up full width */
-    margin: 0; /* Remove any margin */
-    position: relative; /* In case you have other positioning styles */
+    width: 100%;
+    margin: 0;
+    position: relative;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+h1 {
+    text-align: center;
+    color: white;
 }
 
 nav ul {
@@ -40,7 +62,7 @@ nav ul {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin: 0;
-    width: 100%; /* Full width */
+    width: 100%;
 }
 
 nav ul li {
@@ -60,11 +82,12 @@ nav ul li a:hover {
     color: #26d9fc;
 }
 
+/* Main Content */
 main {
     padding: 2em;
     max-width: 800px;
     margin: 0 auto;
-    flex: 1; /* Make sure the main content takes up available space */
+    flex: 1;
 }
 
 section {
@@ -76,7 +99,7 @@ section h2 {
     margin-bottom: 0.5em;
 }
 
-/* Team Section Styles */
+/* Team Section */
 .team-category {
     margin-bottom: 2em;
 }
@@ -120,17 +143,17 @@ section h2 {
     color: #333;
 }
 
-/* Socials Section Styles */
+/* Socials Section */
 .socials-grid {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Space between boxes */
+    gap: 20px;
     margin-top: 20px;
 }
 
 .socials-box {
-    width: 150px; /* Fixed width */
-    height: 150px; /* Fixed height */
+    width: 150px;
+    height: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -143,14 +166,14 @@ section h2 {
 }
 
 .socials-box a {
-    text-decoration: none; /* Remove underline */
-    color: #333; /* Text color */
+    text-decoration: none;
+    color: #333;
 }
 
 .socials-box img {
-    width: 80px; /* Adjust as needed */
-    height: 80px; /* Adjust as needed */
-    object-fit: cover; /* Ensures the image fits nicely */
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
     margin-bottom: 10px;
 }
 
@@ -158,15 +181,71 @@ section h2 {
     margin: 0;
 }
 
-/* Footer Styles */
+/* Tournament Section */
+.tournament-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.tournament-box {
+    width: 300px;
+    padding: 20px;
+    margin: 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: right;
+}
+
+/* Pokemon Section */
+.container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    justify-items: center;
+    padding: 20px;
+}
+
+.pokemon-entry {
+    background-color: white;
+    border: 2px solid #26d9fc;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pokemon-entry:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.normal-sprite {
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+
+.shiny-sprite {
+    display: none;
+    width: 100px;
+    height: 100px;
+}
+
+/* Footer */
 footer {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 1em;
-    width: 100%; /* Full width */
+    width: 100%;
     box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
-    margin: 0; /* Remove any margin */
+    margin: 0;
 }
 
 footer p {
@@ -192,144 +271,4 @@ footer p {
         flex-direction: column;
         align-items: center;
     }
-}
-
-.tournament-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-
-.tournament-box {
-    width: 300px; /* Increased width */
-    padding: 20px; /* Increased padding */
-    margin: 15px; /* Adjusted margin for spacing */
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: right; /* Align text to the right */
-}
-
-body {
-    font-family: 'Rubik', sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 20px;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-
-h1 {
-    text-align: center;
-    color: white;
-}
-
-.container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 15px;
-    justify-items: center;
-    padding: 20px;
-}
-
-.pokemon-entry {
-    background-color: white;
-    border: 2px solid #26d9fc;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.normal-sprite {
-    display: block; /* Show normal sprite */
-    width: 100px; /* Set width for consistent size */
-    height: 100px; /* Set height for consistent size */
-}
-
-.shiny-sprite {
-    display: none; /* Hide shiny sprite initially */
-    width: 100px; /* Set width for consistent size */
-    height: 100px; /* Set height for consistent size */
-}
-
-.pokemon-entry:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1em;
-    width: 100%; /* Full width */
-    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
-    margin: 0; /* Remove any margin */
-}
-
-footer p {
-    margin: 0;
-}
-
-body {
-    overflow-y: scroll; /* Always show vertical scrollbar */
-}
-
-/* Logo Styling */
-.logo {
-    width: 100px; /* Fixed size */
-    height: 100px; /* Fixed size */
-    object-fit: cover; /* Prevents image distortion */
-    border-radius: 50%; /* Makes the logo circular */
-    margin-bottom: 10px;
-}
-
-/* Logo and Title Container */
-.logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px; /* Space between logo and text */
-    margin-bottom: 10px;
-}
-
-/* Logo Styling */
-.logo {
-    width: 80px; /* Fixed size */
-    height: 80px; /* Fixed size */
-    object-fit: cover; /* Ensures the image fits nicely */
-    border-radius: 50%; /* Makes the logo circular */
-}
-
-/* Navigation Styling */
-nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 0;
-    width: 100%; /* Full width */
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    padding: 15px 10px;
-    display: block;
-    transition: color 0.3s;
-}
-
-nav ul li a:hover {
-    color: #26d9fc;
 }
