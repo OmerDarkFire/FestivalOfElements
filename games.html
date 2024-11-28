@@ -241,8 +241,8 @@
                 </div>
                 
                 <div class="pokemon-entry">
-                    <a href="pokemons/nidoran♀.html">
-                        <img src="sprites/nidoran♀.jpg" alt="Nidoran♀" class="normal-sprite">
+                    <a href="pokemons/nidoran-f.html">
+                        <img src="sprites/nidoran-f.jpg" alt="Nidoran♀" class="normal-sprite">
                         <p>#029 Nidoran♀</p>
                     </a>
                 </div>
@@ -262,8 +262,8 @@
                 </div>
                 
                 <div class="pokemon-entry">
-                    <a href="pokemons/nidoran♂.html">
-                        <img src="sprites/nidoran♂.jpg" alt="Nidoran♂" class="normal-sprite">
+                    <a href="pokemons/nidoran-m.html">
+                        <img src="sprites/nidoran-m.jpg" alt="Nidoran♂" class="normal-sprite">
                         <p>#032 Nidoran♂</p>
                     </a>
                 </div>
@@ -620,7 +620,7 @@
                 
                 <div class="pokemon-entry">
                     <a href="pokemons/farfetch’d.html">
-                        <img src="sprites/farfetch’d.jpg" alt="Farfetch’D" class="normal-sprite">
+                        <img src="sprites/farfetchd.jpg" alt="Farfetch’D" class="normal-sprite">
                         <p>#083 Farfetch’D</p>
                     </a>
                 </div>
@@ -893,7 +893,7 @@
                 
                 <div class="pokemon-entry">
                     <a href="pokemons/mr. mime.html">
-                        <img src="sprites/mr. mime.jpg" alt="Mr. Mime" class="normal-sprite">
+                        <img src="sprites/mr-mime.jpg" alt="Mr. Mime" class="normal-sprite">
                         <p>#122 Mr. Mime</p>
                     </a>
                 </div>
@@ -6101,7 +6101,7 @@
                 
                 <div class="pokemon-entry">
                     <a href="pokemons/mr. rime.html">
-                        <img src="sprites/mr. rime.jpg" alt="Mr. Rime" class="normal-sprite">
+                        <img src="sprites/mrrime.jpg" alt="Mr. Rime" class="normal-sprite">
                         <p>#866 Mr. Rime</p>
                     </a>
                 </div>
@@ -7172,6 +7172,30 @@
             </div>
         </section>
     </main>
-
+    <script>
+        // When page loads
+        window.addEventListener('load', function() {
+            // Save current state with scroll position
+            const saveScrollPosition = () => {
+                const state = { scrollY: window.scrollY };
+                history.replaceState(state, '');
+            };
+        
+            // Save position when clicking any Pokemon
+            document.querySelectorAll('.pokemon-entry a').forEach(link => {
+                link.addEventListener('click', saveScrollPosition);
+            });
+        
+            // Handle back button
+            window.addEventListener('popstate', function(event) {
+                if (event.state && event.state.scrollY) {
+                    window.scrollTo(0, event.state.scrollY);
+                }
+            });
+        
+            // Save initial state
+            saveScrollPosition();
+        });
+        </script>
 </body>
 </html>
