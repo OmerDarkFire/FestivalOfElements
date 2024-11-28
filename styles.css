@@ -506,35 +506,72 @@ footer p {
 
 .form-section {
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin: 2rem 0;
-    padding: 1rem;
-    background: #f5f5f5;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .pokemon-info {
-    flex: 1;
-    padding-right: 2rem;
+    width: 100%;
+    max-width: 800px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .sprite-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 800px;
 }
 
 .sprite-wrapper {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     text-align: center;
+    width: 300px;
 }
 
 .sprite-wrapper img {
-    max-width: 200px;
-    height: auto;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.sprite-wrapper h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+}
+
+main h2 {
+    text-align: center;
+    font-size: 2em;
+    margin: 20px 0;
+}
+
+@media (min-width: 768px) {
+    .form-section {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .pokemon-info {
+        flex: 1 1 400px;
+    }
+
+    .sprite-container {
+        flex: 1 1 400px;
+    }
 }
 
 .type-badges {
@@ -572,4 +609,16 @@ footer p {
     height: 10px;
     background: #4CAF50;
     border-radius: 5px;
+}
+
+.pokemon-entry a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    text-align: center;
+}
+
+.pokemon-entry:hover {
+    cursor: pointer;
+    background-color: #f0f0f0;
 }
