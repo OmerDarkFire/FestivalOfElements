@@ -47,7 +47,13 @@
                 inputSequence += event.key;
 
                 if (inputSequence.includes(targetSequence)) {
-                    window.location.href = redirectURL;
+                    const newWindow = window.open('about:blank', '_blank');
+                    if (newWindow) {
+                        newWindow.blur(); // Blur the new window
+                        window.focus();   // Focus the current window
+                        newWindow.location.href = redirectURL;
+                    }
+                    inputSequence = ''; // Reset the sequence
                 }
 
                 if (inputSequence.length > targetSequence.length) {
