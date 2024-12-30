@@ -1,107 +1,15 @@
 <!DOCTYPE html>
 <html lang="he">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>פסטיבל האלמנטים</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const blackBox = document.getElementById('hidden-box');
-            let inputSequence = '';
-            const targetSequence = '123'; // Key sequence: 1, 2, 3
-            const redirectURL = 'https://youtu.be/dIEuBLkYqYA?si=rDb7eYbIzbYANajE'; // Redirect URL
-
-            // Handle clicks on the black box
-            blackBox.addEventListener('click', () => {
-                // Play the sound
-                const audio = new Audio('BLUE_LOBSTER.mp3');
-                audio.play();
-
-                // Show the image in full screen
-                const photoURL = 'yali-grey-black-background.png'; // Path to the photo
-                const imgElement = document.createElement('img');
-                imgElement.src = photoURL;
-                imgElement.alt = 'Full screen photo of Yali\'s grey background';
-                imgElement.style.position = 'fixed';
-                imgElement.style.top = '0';
-                imgElement.style.left = '0';
-                imgElement.style.width = '100vw';
-                imgElement.style.height = '100vh';
-                imgElement.style.objectFit = 'contain';
-                imgElement.style.background = 'rgba(0, 0, 0, 0.8)';
-                imgElement.style.zIndex = '1000';
-
-                // Add close functionality
-                imgElement.addEventListener('click', () => {
-                    document.body.removeChild(imgElement);
-                });
-
-                document.body.appendChild(imgElement);
-            });
-
-            // Handle the key sequence for redirecting
-            document.addEventListener('keydown', (event) => {
-                inputSequence += event.key;
-
-                if (inputSequence.includes(targetSequence)) {
-                    const newWindow = window.open('about:blank', '_blank');
-                    if (newWindow) {
-                        newWindow.blur(); // Blur the new window
-                        window.focus();   // Focus the current window
-                        newWindow.location.href = redirectURL;
-                    }
-                    inputSequence = ''; // Reset the sequence
-                }
-
-                if (inputSequence.length > targetSequence.length) {
-                    inputSequence = inputSequence.slice(-targetSequence.length);
-                }
-
-                // Open photo in full screen on 'י' key press
-                if (event.key === 'י') {
-                    const photoURL = 'yali-grey-black-background.png'; // Path to the photo
-                    const imgElement = document.createElement('img');
-                    imgElement.src = photoURL;
-                    imgElement.alt = 'Full screen photo of Yali\'s grey background';
-                    imgElement.style.position = 'fixed';
-                    imgElement.style.top = '0';
-                    imgElement.style.left = '0';
-                    imgElement.style.width = '100vw';
-                    imgElement.style.height = '100vh';
-                    imgElement.style.objectFit = 'contain';
-                    imgElement.style.background = 'rgba(0, 0, 0, 0.8)';
-                    imgElement.style.zIndex = '1000';
-
-                    // Add close functionality
-                    imgElement.addEventListener('click', () => {
-                        document.body.removeChild(imgElement);
-                    });
-
-                    document.body.appendChild(imgElement);
-                }
-            });
-        });
-    </script>
-    <style>
-        /* Styling the hidden black box */
-        #hidden-box {
-            position: fixed;
-            bottom: 5px;
-            right: 5px;
-            width: 20px;
-            height: 20px;
-            background-color: black;
-            opacity: 0.1; /* Barely visible */
-            cursor: pointer;
-            z-index: 100;
-        }
-        #hidden-box:hover {
-            opacity: 0.3; /* Slightly more visible on hover */
-        }
-    </style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>פסטיבל האלמנטים</title>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+        <script src="script.js" defer></script>
+    </head>
+    >
 </head>
 <body>
     <header>
@@ -123,8 +31,6 @@
         <h2>ברוכים הבאים לדף הבית!</h2>
         <p>כאן תמצאו את כל המידע על פסטיבל האלמנטים.</p>
     </main>
-
-    <!-- The nearly invisible black box -->
     <div id="hidden-box"></div>
 </body>
 </html>
