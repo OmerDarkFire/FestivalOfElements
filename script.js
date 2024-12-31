@@ -74,3 +74,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click handlers for read more buttons
+    document.querySelectorAll('.read-more').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Find the full article content in this specific article box
+            const articleBox = this.closest('.article-box');
+            const fullArticle = articleBox.querySelector('.full-article');
+            
+            // Toggle the content
+            if (fullArticle.classList.contains('show')) {
+                fullArticle.classList.remove('show');
+                this.textContent = 'קרא עוד';
+            } else {
+                fullArticle.classList.add('show');
+                this.textContent = 'קרא פחות';
+            }
+        });
+    });
+});
+// Get the search input field
+const searchInput = document.querySelector('.search-input');
+
+// Add event listener for input
+searchInput.addEventListener('input', function() {
+    const query = searchInput.value.toLowerCase();
+    const articles = document.querySelectorAll('.article-box');
+    
+    articles.forEach(article => {
+        const title = article.querySelector('h3').textContent.toLowerCase();
+        const writer = article.querySelector('.writer-name').textContent.toLowerCase();
+        const date = article.querySelector('.article-date').textContent.toLowerCase();
+        
+        // Show or hide articles based on whether they match the query
+        if (title.includes(query) || writer.includes(query) || date.includes(query)) {
+            article.style.display = 'block'; // Show the article
+        } else {
+            article.style.display = 'none'; // Hide the article
+        }
+    });
+});
