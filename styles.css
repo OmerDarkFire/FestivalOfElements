@@ -306,20 +306,75 @@ footer p {
         flex-direction: column;
         align-items: center;
         padding: 1em 0;
+        gap: 0.5em;
     }
 
-    nav ul li {
-        width: 100%;
-        text-align: center;
-    }
-
-    nav ul li a {
-        display: block;
-        padding: 0.8em;
+    main {
+        padding: 1em;
     }
 
     .container {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .pokemon-entry {
+        width: 100%;
+        height: auto;
+        min-height: 180px;
+    }
+
+    .article-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    .article-box {
+        width: 100%;
+        margin: 0;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .form-section {
+        padding: 10px;
+    }
+
+    .sprite-wrapper {
+        width: 100%;
+        height: auto;
+        min-height: 250px;
+    }
+
+    .search-input {
+        width: 90%;
+        padding: 10px 15px;
+    }
+}
+
+/* Additional breakpoint for very small screens */
+@media (max-width: 480px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .pokemon-entry {
+        height: auto;
+        min-height: 160px;
+    }
+
+    .pokemon-entry img {
+        width: 100px;
+        height: 100px;
     }
 }
 
