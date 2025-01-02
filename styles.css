@@ -218,18 +218,45 @@ section h2 {
 }
 
 .tournament-box {
-    padding: 1.5em;
-    margin: 1em;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 15px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: right;
+    width: calc(33% - 30px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tournament-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .tournament-box h3 {
     color: #26d9fc;
-    margin-bottom: 1em;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.tournament-box p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .tournament-box {
+        width: calc(50% - 30px);
+    }
+}
+
+@media (max-width: 480px) {
+    .tournament-box {
+        width: 100%;
+    }
 }
 
 /* Pokemon Section */
@@ -1024,4 +1051,114 @@ main {
     max-width: 600px;
     outline: none;
     text-align: center;
+}
+
+/* Team Validation Section */
+#team-validation {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 600px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#team-validation:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#team-validation h2 {
+    font-size: 24px;
+    color: #26d9fc;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+textarea#team-input {
+    width: 90%;  /* Smaller than the container */
+    height: 120px;  /* Reduced height */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Rubik', sans-serif;
+    resize: none;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+textarea#team-input:focus {
+    border-color: #26d9fc;
+    outline: none;
+}
+
+button#validate-team {
+    display: block;
+    width: 90%;  /* Match the width of the text area */
+    padding: 12px;  /* Reduced padding for a cleaner look */
+    background: #26d9fc;  /* Solid color for simplicity */
+    color: white;
+    font-size: 16px;  /* Slightly smaller font */
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 0 auto 15px;  /* Center the button */
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button#validate-team:hover {
+    background: #1fa7c4;  /* Slightly darker on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button#validate-team:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#validation-output {
+    width: 100%;
+    font-size: 16px;
+    color: #555;
+    padding: 15px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styles */
+button {
+    display: block;
+    width: 90%;  /* Consistent width */
+    padding: 12px;  /* Reduced padding for a cleaner look */
+    background: #26d9fc;  /* Solid color for simplicity */
+    color: white;
+    font-size: 16px;  /* Consistent font size */
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;  /* Rounded corners */
+    cursor: pointer;
+    margin: 0 auto 15px;  /* Center the button */
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;  /* Smooth transitions */
+}
+
+button:hover {
+    background: #1fa7c4;  /* Slightly darker on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Shadow on hover */
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Shadow on active */
 }
