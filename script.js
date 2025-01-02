@@ -116,3 +116,24 @@ searchInput.addEventListener('input', function() {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the article container
+    const articleContainer = document.querySelector('.article-container');
+    
+    // Get all article boxes
+    let articles = Array.from(document.querySelectorAll('.article-box'));
+    
+    // Sort articles by date (newest first)
+    articles.sort((a, b) => {
+        const dateA = new Date(a.querySelector('.article-date').getAttribute('data-date'));
+        const dateB = new Date(b.querySelector('.article-date').getAttribute('data-date'));
+        return dateB - dateA;
+    });
+    
+    // Clear and re-append sorted articles
+    articleContainer.innerHTML = '';
+    articles.forEach(article => {
+        articleContainer.appendChild(article);
+    });
+});
