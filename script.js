@@ -38,7 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
         inputSequence += event.key;
     
         if (inputSequence.includes(targetSequence)) {
-            const newWindow = window.open(redirectURL, '_blank', 'noopener,noreferrer');
+            setTimeout(() => {
+                const newWindow = window.open(redirectURL, '_blank', 'noopener,noreferrer');
+                if (newWindow) {
+                    newWindow.focus();
+                }
+            }, 100); // Add a short delay to help bypass pop-up blockers
             inputSequence = ''; // Reset the sequence
         }
     
@@ -46,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             inputSequence = inputSequence.slice(-targetSequence.length);
         }
     });
+    
     
 
 
