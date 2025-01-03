@@ -26,24 +26,29 @@
         </nav>
     </header>
 
+    <div class="login-status">
+        <div id="user-status">
+            <span id="login-message">לא מחובר</span>
+            <a href="login.html" id="login-link" class="login-button">התחבר</a>
+            <button id="logout-button" class="login-button" style="display: none;">התנתק</button>
+        </div>
+    </div>
+
     <main>
         <h2>ברוכים הבאים לדף הבית!</h2>
         <p>האתר הרשמי של פסטיבל האלמנטים.</p>
         
         <h2>כתבות:</h2>
-
-        <!-- Search bar -->
         <div class="search-bar">
             <input type="text" class="search-input" placeholder="חפש לפי כותרת, כותב או תאריך">
         </div>
 
-        <!-- Add this container div -->
         <div class="article-container">
-            <!-- Your article boxes go here -->
+            <!-- article boxes here -->
             <div class="article-box">
                 <img class="article-image" src="https://media.discordapp.net/attachments/1215029247446487100/1323622599938408488/20241231_140136.jpg?ex=67752f1b&is=6773dd9b&hm=5ff22606db755cef1bcf0989bc339394447e5e0306300ffefae13cf3f592d98c&=&format=webp&width=1440&height=665" alt="תמונה">
                 <p class="writer-name">כותב הכתבה: עומר</p>
-                <p class="article-date">תאריך: 2024-12-31</p> <!-- Date Added -->
+                <p class="article-date">תאריך: 2024-12-31</p> 
                 <h3>באטמן בדיזינגוף סנטר???</h3>
                     <p class="short-description">באטמן נמצא בדיזינגוף סנטר אמש, בשעה 14:01</p>
                     <div class="full-article">
@@ -51,30 +56,22 @@
                     </div>
                     <a href="javascript:void(0);" class="read-more">קרא עוד</a>
                 </div>
-                <div class="article-box">
-                    <img class="article-image" src="https://publish.one37pm.net/wp-content/uploads/2022/12/most-powerful-pokemon-terapagos.jpg?fit=680%2C549" alt="תמונה">
-                    <p class="writer-name">כותב הכתבה: יוגב</p>
-                    <p class="article-date" data-date="2024-12-31">תאריך: 2024-12-31</p>
-                    <h3>צב מסוג רגיל</h3>
-                    <p class="short-description">טרפגוס - פוקימון צב </p>
-                    <div class="full-article">
-                        <p>אני אוהב צבים</p>
-                    </div>
-                    <a href="javascript:void(0);" class="read-more">קרא עוד</a>
-                </div>
-                <div class="article-box">
-                    <img class="article-image" src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/a36a379e-2272-4ed7-a459-1709a4964702/width=450/00075-1860826441.jpeg" alt="תמונה">
-                    <p class="writer-name">כותב הכתבה: יונטי</p>
-                    <p class="article-date" data-date="2024-12-31">תאריך: 2024-12-31</p>
-                    <h3>איך לבנות וופוריון </h3>
-                    <p class="short-description">קו קו קו קה קו קו קה סמאשי סמאששש</p>
-                    <div class="full-article">
-                        <p>קו קוק קו קה 180 קו קה קו קו  קו קו   קו קו 252קה קו קו קו קה קה 4קה קוווווו  קההההה קו 252קו קו קו קה קהההה קוהה קו קו ♀ קו קו סמאששששש</p>
-                    </div>
-                    <a href="javascript:void(0);" class="read-more">קרא עוד</a>    
-                </div>
-
+                </div
+                
             </div>
+            
         </main>
+        <div id="admin-panel" style="display: none;">
+            <h3>הוספת כתבה חדשה</h3>
+            <form id="new-article-form">
+                <input type="text" id="article-title" placeholder="כותרת" required>
+                <input type="text" id="article-image" placeholder="קישור לתמונה" required>
+                <textarea id="article-short" placeholder="תיאור קצר" required></textarea>
+                <textarea id="article-full" placeholder="תוכן מלא" required></textarea>
+                <button type="submit">הוסף כתבה</button>
+            </form>
+        </div>
     </body>
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="articles.js"></script>
 </html>

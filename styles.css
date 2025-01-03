@@ -1162,3 +1162,37 @@ button:active {
     transform: translateY(1px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Shadow on active */
 }
+
+.login-status {
+    text-align: left;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.login-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #26d9fc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.login-button:hover {
+    background-color: #1fa7c4;
+}
+
+#user-status {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+#login-message {
+    font-size: 14px;
+}

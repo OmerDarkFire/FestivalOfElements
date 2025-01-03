@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>התחברות - פסטיבל האלמנטים</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>התחברות</h2>
+        <form id="login-form">
+            <input type="email" id="email" placeholder="אימייל" required>
+            <input type="password" id="password" placeholder="סיסמה" required>
+            <button type="submit">התחבר</button>
+        </form>
+        <p id="login-error" style="color: red;"></p>
+    </div>
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="login.js"></script>
+</body>
+</html>
