@@ -1196,3 +1196,68 @@ button:active {
 #login-message {
     font-size: 14px;
 }
+
+/* Auth Forms Styling */
+.auth-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.auth-form {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.auth-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 12px;
+    background: #26d9fc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.auth-form button:hover {
+    background: #1fa7c4;
+}
+
+.error-message {
+    color: #ff4444;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.switch-form {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.switch-form a {
+    color: #26d9fc;
+    text-decoration: none;
+}
+
+.switch-form a:hover {
+    text-decoration: underline;
+}
