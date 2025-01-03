@@ -36,23 +36,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Key Sequence Event for '123' Redirect
     document.addEventListener('keydown', (event) => {
         inputSequence += event.key;
-    
+
+        // Check for the sequence match
         if (inputSequence.includes(targetSequence)) {
-            setTimeout(() => {
-                const newWindow = window.open(redirectURL, '_blank', 'noopener,noreferrer');
-                if (newWindow) {
-                    newWindow.focus();
-                }
-            }, 100); // Add a short delay to help bypass pop-up blockers
-            inputSequence = ''; // Reset the sequence
+            window.open(redirectURL, '_blank');
+            inputSequence = ''; // Reset sequence after match
         }
-    
+
+        // Prevent inputSequence from growing too long
         if (inputSequence.length > targetSequence.length) {
             inputSequence = inputSequence.slice(-targetSequence.length);
         }
     });
-    
-    
+});
 
 
 document.addEventListener('DOMContentLoaded', function() {
