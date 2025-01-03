@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle clicks on the black box
     blackBox.addEventListener('click', () => {
         // Play the sound
-        const audio = new Audio('BLUE_LOBSTER.mp3');
+        const audio = new Audio('images/BLUE_LOBSTER.mp3');
         audio.play();
 
         // Show the image in full screen
-        const photoURL = 'yali-grey-black-background.png'; // Path to the photo
+        const photoURL = 'images/yali-grey-black-background.png'; // Path to the photo
         const imgElement = document.createElement('img');
         imgElement.src = photoURL;
         imgElement.alt = 'Full screen photo of Yali\'s grey background';
